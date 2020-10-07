@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Vacation Rental - Free Bootstrap 4 Template by Colorlib</title>
+		<title>ทีมติวเตอร์</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		
@@ -47,7 +47,7 @@
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
 			<h1 class="mb-0 bread" style="color: black;">ทีม Tutorbypchula</h1>
-			<p style="color: black;">ผู้ปกครองและน้องๆที่สนใจเรียนพิเศษกับ Tutorbypchula สามารถกำหนดเนื้อหา วิชา วันเวลาและสถานที่ที่ต้องการเรียนได้เอง โดยทางสถาบันจะคัดเลือกติวเตอร์ที่มีประสบการณ์ มีความถนัดตามแต่ละวิชาและตรงความต้องการของผู้เรียนมากที่สุดให้น้องๆเป็นผู้พิจารณาอีกครั้งก่อนเริ่มเรียน </p>
+			<p class="text-index">ผู้ปกครองและน้องๆที่สนใจเรียนพิเศษกับ Tutorbypchula สามารถกำหนดเนื้อหา วิชา วันเวลาและสถานที่ที่ต้องการเรียนได้เอง โดยทางสถาบันจะคัดเลือกติวเตอร์ที่มีประสบการณ์ มีความถนัดตามแต่ละวิชาและตรงความต้องการของผู้เรียนมากที่สุดให้น้องๆเป็นผู้พิจารณาอีกครั้งก่อนเริ่มเรียน </p>
           </div>
         </div>
       </div>
@@ -55,32 +55,13 @@
    
     <section class="ftco-section bg-light">
     	<div class="container" id="show-content">
-    	</div>
+		</div>
+		<div id="model-show"></div>
     </section>
 
 
     
 		
-		<footer class="footer">
-			<div class="container">
-				<div class="row">
-					
-					
-					
-					<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
-						<h2 class="footer-heading">ช่องทางการติดต่อ</h2>
-						<p class="ftco-animate" style="color: white;"><span class="fas fa-phone"></span>  064-280-8555 , 089-771-9981 </p> </a>
-						
-						
-						<ul class="ftco-footer-social p-0">
-							<li class="ftco-animate"><a href="https://lin.ee/FFzqdrq" data-toggle="tooltip" data-placement="top" title="line"><span class="fab fa-line"></span></a></li>
-							<li class="ftco-animate"><a href="https://www.facebook.com/tutorbypchula" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fab fa-facebook"></span></a></li>
-							<li class="ftco-animate"><a href="https://www.instagram.com/tutorbypchula/?hl=th" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fab fa-instagram"></span></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</footer>
     
   
 
@@ -130,6 +111,7 @@
 
 		function gotData(data){
 			var show_content = document.getElementById("show-content");
+			var show_model = document.getElementById("model-show");
 			var val = data.val();
 			var keys = Object.keys(val);
 			for(var i = 0;i<keys.length;i++){
@@ -150,15 +132,52 @@
 				div4.className = "media-body py-4 px-3";
 				div3.style.backgroundImage = 'url('+val[k].img+')';
 				text+='<h3 class="heading">'+ val[k].nickName +'</h3>'
-				text+='<p>'+val[k].Education+'</p>'
-				text+='<p><a href="tutorDetail.html?'+keys[i]+'" class="btn btn-primary">Read more</a></p>';
+				text+='<p class="text-tutor">'+val[k].Education+'</p>'
+				text+='<p><button class="model-open btn btn-primary " data-model="'+i+'" onclick="OpenModel('+i+')">Read more</button></p>';
 				div4.innerHTML=text;
 				div2.appendChild(div3);
 				div2.appendChild(div4);
 				div1.appendChild(div2);
 				div.appendChild(div1);
+
+				var model = document.createElement("div");
+				var modelContent = document.createElement("div");
+				var modelHeader = document.createElement("div");
+				var modelBody = document.createElement("div");
+				var modelFooter = document.createElement("div");
+				var img = document.createElement("img");
+				img.src = val[k].img;
+				img.width = "250";
+				img.height = "250";
+				model.id = i;
+				model.className = "model";
+				modelContent.className = "model-content";
+				modelHeader.className = "model-header";
+				modelBody.className = "model-body";
+				modelFooter.className = "model-footer";
+				var imgClass = document.createElement("div");
+				imgClass.className = "row no-gutters slider-text align-items-center justify-content-center";
+				modelHeader.innerHTML = val[k].nickName+ '<button class="model-icon  model-close" onclick="CloseModel('+i+')"><i class="fas fa-times"></i></button>';
+				modelFooter.innerHTML = '<button class="link model-close" onclick="CloseModel('+i+')">Close</button>'
+				modelBody.innerHTML = 
+				'<hr><div class="row no-gutters slider-text align-items-center justify-content-center"><div class="col-md-9 text-center">'+
+                '<div class="row align-items-center justify-content-center" ><label for="" class="text-tutor-detail">ชื่อ : <span id="fullName">'+val[k].firstName+' '+val[k].lastName+'</span></label></div>'+
+                '<div class="row align-items-center justify-content-center"><label for="" class="text-tutor-detail">ชื่อเล่น : <span id="nickName">'+val[k].nickName+'</span></label></div>'+
+                '<div class="row align-items-center justify-content-center"><label for="" class="text-tutor-detail">การศึกษา : <span id="Education">'+val[k].Education+'</span></label></div>'+
+                '<div class="row align-items-center justify-content-center"><label for="" class="text-tutor-detail">E-mail : <span id="Email">'+val[k].Email+'</span></label></div>'+
+                '<div class="row align-items-center justify-content-center"><label for="" class="text-tutor-detail">ประวัติการสอน : <span id="Teaching">'+val[k].Teaching+'</span></label></div>'+
+				'<div class="row align-items-center justify-content-center" ><label for="" class="text-tutor-detail">วิชาที่สอน : <span id="Subject">'+val[k].Subject+'</span></label></div><hr></div></div>';
+				imgClass.appendChild(img);
+				modelBody.prepend(imgClass);
+
+				modelContent.appendChild(modelHeader);
+				modelContent.appendChild(modelBody);
+				modelContent.appendChild(modelFooter);
+				model.appendChild(modelContent);
+				show_model.appendChild(model);
 				if((i+3)%3==0||i==keys.length-1){
 					show_content.appendChild(div);
+					
 				}
 			}
 			
@@ -170,6 +189,7 @@
 		}
 		
 	</script>
+	<script src="js/app.js"></script>
 
 
     
