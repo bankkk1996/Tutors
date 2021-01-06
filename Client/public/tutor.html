@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ทีมติวเตอร์</title>
+    <link rel="stylesheet" href="./css/main1.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body>
+    <header class=" fade-out show-on-scroll">
+        <nav>
+            <div class="container">
+                <div class="nav-grid">
+                    <div class="logo">
+                        <img src="./img/logo/newlogo-01.png" >
+                    </div>
+                    <ul class="menu">
+                        <li><a href="index.html">หน้าแรก</a></li>
+                        <li><a href="tutor.html" class="active">ทีมติวเตอร์</a></li>
+                        <li><a href="course.html">หลักสูตร</a></li>
+                        <li><a href="contact.html">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <section class="bg-img1">
+        <div class="container">
+            <div class="detail">
+                <div class="detail-heading fade-out show-on-scroll">
+                    <h1>ทีม Tutorbypchula</h1>
+                </div>
+                <div class="detail-content">
+                    <p class=" fade-out show-on-scroll">ผู้ปกครองและน้องๆที่สนใจเรียนพิเศษกับ Tutorbypchula สามารถกำหนดเนื้อหา วิชา วันเวลาและสถานที่ที่ต้องการเรียนได้เอง โดยทางสถาบันจะคัดเลือกติวเตอร์ที่มีประสบการณ์ มีความถนัดตามแต่ละวิชาและตรงความต้องการของผู้เรียนมากที่สุดให้น้องๆเป็นผู้พิจารณาอีกครั้งก่อนเริ่มเรียน</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-light">
+    	<div class="container" >
+            <div class="content-tutor">
+                <div class="content-tutor-grid" id="show-content">
+                    
+                </div>
+            </div>
+            <div id="model-show">
+                
+            </div>
+		</div>
+		
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-item">
+                    <h1 class="footer-heading fade-out show-on-scroll">ช่องทางการติดต่อ</h1>
+                    <div class="footer-detail fade-out show-on-scroll">
+                        <li><span>Tel. : <a href="tel://0642808555" class="footer-tel"><span class="fas fa-phone"></span> 064-280-8555 </a></span></li>
+                        <li><span>Tel. : <a href="tel://0897719981" class="footer-tel"><span class="fas fa-phone"></span> 089-771-9981 </a></span></li>
+                        <li><span>Line : <a href="https://line.me/ti/p/%40@sid2057o">@sid2057p</a></span></li>
+                        <li><span>Facebook : <a href="https://www.facebook.com/tutorbypchula">Tutorbypchula - ติวเตอร์บายพี่จุฬา</a></span></li>
+                        <li><span>Instagram : <a href="https://www.instagram.com/tutorbypchula/?hl=th">Tutorbypchula</a></span></li>
+                    </div>
+                </div>
+                <div class="footer-item">
+                    <h1 class="footer-heading fade-out show-on-scroll">โซเซี่ยล</h1>
+                    <ul class="footer-social fade-out show-on-scroll">
+                        <li><a href="https://lin.ee/FFzqdrq" data-toggle="tooltip" data-placement="top" title="Line"><span class="fab fa-line"></span></a></li>
+                        <li><a href="https://www.facebook.com/tutorbypchula" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fab fa-facebook"></span></a></li>
+                        <li><a href="https://www.instagram.com/tutorbypchula/?hl=th" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fab fa-instagram"></span></a></li>
+                    </ul>
+                    <img class="footer-img  fade-out show-on-scroll" src="./img/QRCODE.jpg" >
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+    <script>
+		 var firebaseConfig = {
+    apiKey: "AIzaSyC7AYMwhxbadbyEXZy3YA8XP-ymszqQsdM",
+    authDomain: "toturonline.firebaseapp.com",
+    databaseURL: "https://toturonline.firebaseio.com",
+    projectId: "toturonline",
+    storageBucket: "toturonline.appspot.com",
+    messagingSenderId: "356726360840",
+    appId: "1:356726360840:web:67bbed409de39eb6c17abd",
+    measurementId: "G-Q00TY67NNE"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+	// Get a reference to the database service
+	var database = firebase.database();
+	
+	</script>
+
+	<script>
+		function LoadData(){
+			var ref = firebase.database().ref("Tutors");
+			ref.on('value',gotData,errData);
+		}
+		function gotData(data){
+            
+            var show_content = document.getElementById("show-content");
+            show_content.innerHTML = '';
+            var show_model = document.getElementById("model-show");
+            show_model.innerHTML = '';
+			var val = data.val();
+            var keys = Object.keys(val);
+            var count = 0;
+            keys.forEach(k => {
+               console.log(val[k].nickName);
+               var card = document.createElement('figure');
+               var profile = document.createElement('img');
+               var figcaption = document.createElement('figcaption');
+               card.className = "card";
+               card.style.animation = "";
+               profile.className = "profile";
+               profile.src = val[k].img;
+               figcaption.innerHTML = "<h2>"+val[k].nickName+"</h2>"+"<span>"+val[k].Detail+"</span>"+"<a class='readmore' onclick='Popup("+count+")''>อ่านต่อ</a>";
+               card.appendChild(profile);
+               card.appendChild(figcaption);
+               show_content.appendChild(card);
+               var popup = document.createElement('div');
+               var popupInner = document.createElement('div');
+               var popupGrid = document.createElement('div');
+               var popupPhoto = document.createElement('div');
+               var imgProfile = document.createElement('img');
+               var popupText = document.createElement('div');
+               var popupTextGrid1 = document.createElement('div');
+               var popupTextGrid2 = document.createElement('div');
+               var popupTextGrid3 = document.createElement('div');
+               var popupTextGrid4 = document.createElement('div');
+               var popupTextGrid5 = document.createElement('div');
+               var popupTextGrid6 = document.createElement('div');
+               var btn = document.createElement('div');
+               imgProfile.src = val[k].img;
+               popup.id = count;
+               popup.style.display = "none";
+               popup.className = "popup";
+               popupInner.className = "popup-inner bg-img1";
+               popupGrid.className = "popup-grid";
+               popupPhoto.className = "popup-photo";
+               popupText.className = "popup-text";
+               popupTextGrid1.className = "popup-text-grid";
+               popupTextGrid2.className = "popup-text-grid";
+               popupTextGrid3.className = "popup-text-grid";
+               popupTextGrid4.className = "popup-text-grid";
+               popupTextGrid5.className = "popup-text-grid";
+               popupTextGrid6.className = "popup-text-grid";
+               btn.className = "btn-popup";
+               
+               popupTextGrid2.innerHTML = "<h1 class='popup-email'>ชื่อเล่น : </h1><span>"+val[k].nickName+"</span>";
+               
+               popupTextGrid4.innerHTML = "<h1 class='popup-email'>การศึกษา : </h1><span>"+val[k].Education+"</span>";
+               popupTextGrid5.innerHTML = "<h1 class='popup-email'>ประวัติการสอน : </h1><span>"+val[k].Teaching+"</span>";
+               popupTextGrid6.innerHTML = "<h1 class='popup-email'>วิชาที่สอน : </h1><span>"+val[k].Subject+"</span>";
+               btn.innerHTML = "<a onclick='Popup("+count+")' class='close' id='close' >ปิด</a>";
+               if((val[k].firstName+" "+val[k].lastName)!==" "){
+                    popupText.appendChild(popupTextGrid1);
+               }
+               if((val[k].nickName)!==""){
+                    popupText.appendChild(popupTextGrid2);
+               }
+               if((val[k].Email)!==""){
+                    popupText.appendChild(popupTextGrid3);
+               }
+               if((val[k].Education)!==""){
+                    popupText.appendChild(popupTextGrid4);
+               }
+               if((val[k].Teaching)!==""){
+                    popupText.appendChild(popupTextGrid5);
+               }
+               if((val[k].Subject)!==""){
+                    popupText.appendChild(popupTextGrid6);
+               }
+               popupPhoto.appendChild(imgProfile);
+               popupGrid.appendChild(popupPhoto);
+               popupGrid.appendChild(popupText);
+               popupInner.appendChild(popupGrid);
+               popupInner.appendChild(btn);
+               popup.appendChild(popupInner);
+               show_model.appendChild(popup);
+               count++;
+            });
+            
+            
+
+		}
+
+		function errData(data){
+			console.log("Error!");
+			console.log(err);
+        }
+        
+        LoadData();
+		
+	</script>
+    <script src="./js/fade.js">
+    </script>
+</body>
+</html>

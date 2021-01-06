@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="./css/adminLTE.min.css">
+    <link rel="stylesheet" href="./css/skin-pink.min.css">
+
+</head>
+<body class="skin-pink">
+
+    <div class="wrapper">
+
+        <!-- Main Header -->
+        <header class="main-header">
+      
+          <!-- Logo -->
+          <a href="index2.html" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>Admin</b></span>
+          </a>
+      
+          <!-- Header Navbar -->
+          <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+              <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+          </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+      
+          <!-- sidebar: style can be found in sidebar.less -->
+          <section class="sidebar">
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree">
+              <li class="header">MENU</li>
+              <!-- Optionally, you can add icons to the links -->
+              <li class="active"><a href="index.html"><i class="fa fa-link"></i> <span>HOME</span></a></li>
+              <li><a href="tutor.html"><i class="fa fa-link"></i> <span>TUTORS</span></a></li>
+              <li><a href="course.html"><i class="fa fa-link"></i> <span>COURSE</span></a></li>
+            </ul>
+            <!-- /.sidebar-menu -->
+          </section>
+          <!-- /.sidebar -->
+        </aside>
+      
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+          <!-- Content Header (Page header) -->
+          <section class="content-header">
+            <h1>
+              Main Page
+            </h1>
+          </section>
+      
+          <!-- Main content -->
+          <section class="content container-fluid">
+      
+            <!--------------------------
+              | Your Page Content Here |
+              -------------------------->
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="info-box bg-green">
+                            <!-- Apply any bg-* class to to the icon to color it -->
+                            <span class="info-box-icon"><i class="fa fa-users"></i></span>
+                            <div class="info-box-content">
+                              <span class="info-box-text">TUTORS</span>
+                              <span class="info-box-number" id="numberTutor">0</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="info-box bg-red">
+                            <!-- Apply any bg-* class to to the icon to color it -->
+                            <span class="info-box-icon bg-red"><i class="fa fa-book"></i></span>
+                            <div class="info-box-content">
+                              <span class="info-box-text">COURSE</span>
+                              <span class="info-box-number" id="numberCourse">0</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                    </div>
+                    
+                </div>
+      
+          </section>
+          <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+      
+        <!-- Main Footer -->
+        <footer class="main-footer">
+          <!-- To the right -->
+          <div class="pull-right hidden-xs">
+            Anything you want
+          </div>
+          <!-- Default to the left -->
+          <strong>Copyright &copy; 2020 <a href="#">Company</a>.</strong> All rights reserved.
+        </footer>
+      
+        <div class="control-sidebar-bg"></div>
+      </div>
+
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/adminLTE.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+    <script>
+		 var firebaseConfig = {
+    apiKey: "AIzaSyC7AYMwhxbadbyEXZy3YA8XP-ymszqQsdM",
+    authDomain: "toturonline.firebaseapp.com",
+    databaseURL: "https://toturonline.firebaseio.com",
+    projectId: "toturonline",
+    storageBucket: "toturonline.appspot.com",
+    messagingSenderId: "356726360840",
+    appId: "1:356726360840:web:67bbed409de39eb6c17abd",
+    measurementId: "G-Q00TY67NNE"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+	// Get a reference to the database service
+	var database = firebase.database();
+	
+	</script>
+    <script>
+        function LoadData(){
+            var ref = firebase.database().ref("Tutors");
+			ref.on('value',gotDataT,errData);
+			var ref = firebase.database().ref("Courses");
+			ref.on('value',gotData,errData);
+		}
+
+        function gotDataT(data){
+            var val = data.val();
+            var keys = Object.keys(val);
+            var numberTutor = document.getElementById('numberTutor');
+            numberTutor.innerHTML =  keys.length;
+        }
+        function gotData(data){
+            var val = data.val();
+            var keys = Object.keys(val);
+            var numberCourse = document.getElementById('numberCourse');
+            numberCourse.innerHTML =  keys.length;
+        }
+        
+
+        function errData(data){
+			console.log("Error!");
+			console.log(err);
+        }
+        LoadData();
+    </script>
+</body>
+</html>

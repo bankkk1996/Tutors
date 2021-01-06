@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="./css/adminLTE.min.css">
+    <link rel="stylesheet" href="./css/skin-pink.min.css">
+
+</head>
+<body class="skin-pink">
+
+    <div class="wrapper">
+
+        <!-- Main Header -->
+        <header class="main-header">
+      
+          <!-- Logo -->
+          <a href="index2.html" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>Admin</b></span>
+          </a>
+      
+          <!-- Header Navbar -->
+          <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+              <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+          </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+      
+          <!-- sidebar: style can be found in sidebar.less -->
+          <section class="sidebar">
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree">
+              <li class="header">MENU</li>
+              <!-- Optionally, you can add icons to the links -->
+              <li><a href="index.html"><i class="fa fa-link"></i> <span>HOME</span></a></li>
+              <li><a href="tutor.html"><i class="fa fa-link"></i> <span>TUTORS</span></a></li>
+              <li class="active"><a href="course.html"><i class="fa fa-link"></i> <span>COURSE</span></a></li>
+            </ul>
+            <!-- /.sidebar-menu -->
+          </section>
+          <!-- /.sidebar -->
+        </aside>
+      
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+          <!-- Content Header (Page header) -->
+          <section class="content-header">
+            <h1>
+              Courses Page
+            </h1>
+          </section>
+      
+          <!-- Main content -->
+          <section class="content container-fluid">
+      
+            <!--------------------------
+              | Your Page Content Here |
+              -------------------------->
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="box  box-solid box-success" id="myBox">
+                      <div class="box-header with-border">
+                        <h3 class="box-title">Add Course</h3>
+                        <div class="box-tools pull-right">
+                          <!-- Collapse Button -->
+                          <button type="button" class="btn btn-box-tool" data-widget="collapse" id="boxBtn">
+                            <i class="fa fa-minus"></i>
+                          </button>
+                        </div>
+                        <!-- /.box-tools -->
+                      </div>
+                      <!-- /.box-header -->
+                      <div class="box-body">
+                          <form action="">
+                              <div class="row">
+                                  <div class="col-md-3">
+                                      <div class="row">
+                                          <div class="col-md-6">
+                                              <img src="https://via.placeholder.com/250x250" id="Show" width="250px" width="250px">
+                                          </div>
+                                      </div>
+                                      <br>
+                                      <div class="row">
+                                          <div class="col-md-12">
+                                              <div class="form-group">
+                                                  <input class="form-control" id="Img" type="file" onchange="LoadImg(event)">
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-8">
+                                      <div class="row">
+                                          <div class="col-md-6">
+                                              <div class="form-group">
+                                                  <label for="inputdefault">NameCourse</label>
+                                                  <input class="form-control" id="NameCourse" type="text">
+                                              </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                              <div class="form-group">
+                                                  <label for="inputdefault">Course</label>
+                                                  <input class="form-control" id="Course" type="text">
+                                              </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="inputdefault">Detail</label>
+                                                <input class="form-control" id="Detail" type="text">
+                                            </div>
+                                        </div>
+                                          
+                                      </div>
+                                      
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                      <!-- /.box-body -->
+                      <div class="box-footer">
+                          <div class="pull-right">
+                              <button type="submit" class="btn btn-success" onclick="submitData()">Save</button>
+                          </div>
+                      </div>
+                      <!-- box-footer -->
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="ShowCourse"></div>
+      
+          </section>
+          <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+      
+        <!-- Main Footer -->
+        <footer class="main-footer">
+          <!-- To the right -->
+          <div class="pull-right hidden-xs">
+            Anything you want
+          </div>
+          <!-- Default to the left -->
+          <strong>Copyright &copy; 2020 <a href="#">Company</a>.</strong> All rights reserved.
+        </footer>
+      
+        <div class="control-sidebar-bg"></div>
+      </div>
+
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/adminLTE.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+    <script>
+		 var firebaseConfig = {
+    apiKey: "AIzaSyC7AYMwhxbadbyEXZy3YA8XP-ymszqQsdM",
+    authDomain: "toturonline.firebaseapp.com",
+    databaseURL: "https://toturonline.firebaseio.com",
+    projectId: "toturonline",
+    storageBucket: "toturonline.appspot.com",
+    messagingSenderId: "356726360840",
+    appId: "1:356726360840:web:67bbed409de39eb6c17abd",
+    measurementId: "G-Q00TY67NNE"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+	// Get a reference to the database service
+	var database = firebase.database();
+	
+  </script>
+  <script>
+    function RenderCourse(){
+    var ShowCourse = document.getElementById('ShowCourse');
+    ShowCourse.innerHTML = '';
+    var firebaseRef = firebase.database().ref("Courses");
+    firebaseRef.once('value').then(function(dataSnapshot){
+      dataSnapshot.forEach(data =>{
+        var key = data.key;
+        var val = data.val();
+        console.log(val)
+        var col = document.createElement('div');
+        col.className = "col-md-12";
+        var box = document.createElement('div');
+        box.className = 'box box-solid box-success';
+        var boxHeader = document.createElement('div');
+        boxHeader.className = "box-header with-border"
+        var boxTitle = document.createElement('h3');
+        boxTitle.className = "box-title";
+        boxTitle.textContent = key;
+        boxHeader.appendChild(boxTitle);
+        var boxBody = document.createElement('div');
+        boxBody.className = "box-body";
+        boxBody.innerHTML = '<div class="row"><div class="col-md-3"><div class="row"><div class="col-md-6"><img src="'+val.img+'" id="ShowS" width="250px" width="250px"></div></div></div>'+
+        '<div class="col-md-8"><div class="row"><div class="col-md-6"><div class="form-group"> <label for="inputdefault">Name:</label><br><span>'+val.NameCourse+'</span></div></div>'+
+        '<div class="col-md-6"><div class="form-group" id="EducationSh"><label for="inputdefault">Education:</label><br><span>'+val.Course+'</span></div></div>'+
+        '<div class="col-md-6"><div class="form-group"><label for="inputdefault">Detail:</label><br><span>'+val.Detail+'</span></div></div></div>'+
+        '</div></div>';
+        var boxFooter = document.createElement('div');
+        boxFooter.className = "box-footer";
+        var pullRight = document.createElement('div');
+        pullRight.className = "pull-right";
+        pullRight.innerHTML = "<a type='submit' class='btn btn-warning' href='editCourse.html?"+key+"' >Edit</a>"+" <button type='submit' class='btn btn-danger' id='"+key+"' onclick='removeCourse(this.id)'>Remove</button>";
+        boxFooter.appendChild(pullRight);
+        box.appendChild(boxHeader);
+        box.appendChild(boxBody);
+        box.appendChild(boxFooter);
+        col.appendChild(box);
+        ShowCourse.appendChild(col);
+      })
+    });
+}
+
+RenderCourse();
+  </script>
+    <script src="./js/course.js"></script>
+</body>
+</html>
